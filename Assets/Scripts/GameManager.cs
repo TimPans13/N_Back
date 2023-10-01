@@ -53,7 +53,8 @@ public class GameManager : MonoBehaviour
                 yield return new WaitForSeconds(1f); 
                 foreach (int buttonID in targetCombination)
                 {
-                    buttonCollection[buttonID].FlashButton(); 
+                    buttonCollection[buttonID].FlashButton();
+                    yield return new WaitForSeconds(0.5f);
                     yield return new WaitForSeconds(buttonFlashDuration);
                 }
                 break;
