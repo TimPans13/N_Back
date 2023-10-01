@@ -32,13 +32,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //void GenerateTargetCombination()//random generation
+    //{
+    //    targetCombination.Clear();
+    //    for (int i = 0; i < currentCombinationSize; i++)
+    //    {
+    //        int randomButtonID = Random.Range(0, gridSize);
+    //        targetCombination.Add(randomButtonID);
+    //    }
+    //}
     void GenerateTargetCombination()
     {
-        targetCombination.Clear();
-        for (int i = 0; i < currentCombinationSize; i++)
+        if (targetCombination.Count < currentCombinationSize)
         {
-            int randomButtonID = Random.Range(0, gridSize);
-            targetCombination.Add(randomButtonID);
+            int remainingElements = currentCombinationSize - targetCombination.Count;
+            for (int i = 0; i < remainingElements; i++)
+            {
+                int randomButtonID = Random.Range(0, gridSize);
+                targetCombination.Add(randomButtonID);
+            }
+        }
+        else if (targetCombination.Count > currentCombinationSize)
+        {
+            int elementsToRemove = targetCombination.Count - currentCombinationSize;
+            targetCombination.RemoveRange(targetCombination.Count - elementsToRemove, elementsToRemove);
         }
     }
 
