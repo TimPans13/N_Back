@@ -9,13 +9,13 @@ public class ButtonScript : MonoBehaviour
     private int buttonID;
     public int ButtonID { get => buttonID; set => buttonID = value; }
     private GameManager gameManager;
-    private Image buttonImage;
+    [SerializeField]private Image buttonImage;
     public Color flashColor = Color.blue; 
 
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        buttonImage = GetComponent<Image>();
+        ///buttonImage = GetComponent<Image>();
 
     }
     public void ButtonClick()
@@ -30,8 +30,9 @@ public class ButtonScript : MonoBehaviour
 
     private IEnumerator FlashButtonCoroutine()
     {
-        buttonImage.color = flashColor;
+        Color originalColor = buttonImage.color; // сохраняем оригинальный цвет кнопки
+        buttonImage.color = new Color(flashColor.r, flashColor.g, flashColor.b, 1.0f); // устанавливаем непрозрачный flashColor
         yield return new WaitForSeconds(gameManager.buttonFlashDuration);
-        buttonImage.color = Color.white; 
+        buttonImage.color = originalColor; // восстанавливаем оригинальный цвет
     }
 }

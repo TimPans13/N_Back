@@ -52,7 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bdfe4ed19b80b458d33f49a639bb1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashColor: {r: 0, g: 0, b: 0, a: 0}
+  buttonImage: {fileID: 4698655173079702156}
+  flashColor: {r: 0.41237906, g: 0.10252755, b: 0.754717, a: 0}
 --- !u!222 &-227884240356396861
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -112,7 +113,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.9111962, g: 0.91922706, b: 0.9716981, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
