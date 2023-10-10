@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject buttonPrefab;
     [SerializeField] private Transform container;
+    [SerializeField] private ScoreScript scoreScript;
     private int gridSize = 9;
     private List<ButtonScript> buttonCollection = new List<ButtonScript>();
     private List<int> targetCombination = new List<int>();
@@ -13,6 +14,8 @@ public class GameManager : MonoBehaviour
     private int currentCombinationSize = 1;
     public float buttonFlashDuration = 1f; 
     private float flashTimer = 0f;
+    private bool isPlayingCombination = false;
+
 
     private void Start()
     {
@@ -61,6 +64,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator FlashButtonsInCombination()
     {
+        isPlayingCombination = true;
         while (true)
         {
             flashTimer += Time.deltaTime;
@@ -78,10 +82,15 @@ public class GameManager : MonoBehaviour
             }
             yield return null;
         }
+        isPlayingCombination = false;
     }
 
     public void OnButtonClicked(int buttonID)
     {
+        if (isPlayingCombination)
+        {
+            return;
+        }
         playerCombination.Add(buttonID);
         if (playerCombination.Count == targetCombination.Count)
         {
@@ -102,6 +111,7 @@ public class GameManager : MonoBehaviour
                 flashTimer = 0f; 
                 StartCoroutine(FlashButtonsInCombination()); 
                 Debug.Log("ты чертовски прав");
+                scoreScript.IncreaseScore();
             }
             else
             {
@@ -110,6 +120,7 @@ public class GameManager : MonoBehaviour
                 flashTimer = 0f; 
                 StartCoroutine(FlashButtonsInCombination()); 
                 Debug.Log("не твой день братиш");
+                scoreScript.DecreaseScore();
             }
 
             playerCombination.Clear();

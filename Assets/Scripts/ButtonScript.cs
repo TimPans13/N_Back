@@ -30,9 +30,9 @@ public class ButtonScript : MonoBehaviour
 
     private IEnumerator FlashButtonCoroutine()
     {
-        Color originalColor = buttonImage.color; // сохраняем оригинальный цвет кнопки
-        buttonImage.color = new Color(flashColor.r, flashColor.g, flashColor.b, 1.0f); // устанавливаем непрозрачный flashColor
+        Color originalColor = buttonImage.color; 
+        buttonImage.color = new Color(flashColor.r, flashColor.g, flashColor.b, 1.0f); 
         yield return new WaitForSeconds(gameManager.buttonFlashDuration);
-        buttonImage.color = originalColor; // восстанавливаем оригинальный цвет
+        buttonImage.color = originalColor; 
     }
 }
